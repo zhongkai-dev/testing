@@ -5,7 +5,7 @@ from telegram.ext import CommandHandler, CallbackContext, Updater
 BOT_TOKEN = "7735565121:AAF6jkjRPsmsEZdlCRQbRPAcMtF_tNXj-WA"
 
 # WebApp URL
-WEBAPP_URL = "https://your-railway-hosted-app.com"
+WEBAPP_URL = "https://testing-production-1515.up.railway.app"
 
 def start(update: Update, context: CallbackContext):
     """Send an inline keyboard with a WebApp button."""
