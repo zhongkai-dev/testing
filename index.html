@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram WebApp Auth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p id="auth-status">Authenticating...</p>
+    </div>
+
+    <script>
+        // Telegram WebApp object
+        const tg = window.Telegram.WebApp;
+
+        // Get authentication data from initData
+        const authData = tg.initDataUnsafe;
+
+        // Verify if the user is authenticated
+        if (authData && authData.user) {
+            const user = authData.user;
+            document.getElementById('auth-status').textContent = `
+                Hello, ${user.first_name} ${user.last_name || ''} (@${user.username || 'No username'}).
+                Your Telegram ID is ${user.id}.
+            `;
+        } else {
+            document.getElementById('auth-status').textContent = "Failed to authenticate.";
+        }
+
+        // Enable the WebApp's main button
+        tg.MainButton.text = "Close";
+        tg.MainButton.show();
+    </script>
+</body>
+</html>
